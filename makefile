@@ -3,8 +3,9 @@
 
 TARGET=runjenkins
 run:
-	docker rm -f $(docker ps -a -q)
-	docker volume rm $(docker volume ls -q)
+	docker stop -t=10 jenkins
+	docker volume rm jenkins-data
+	docker volume rm jenkins-docker-certs
 	docker rmi -f jenkins:latest
 run:
 	docker build -t jenkins:latest . --no-cache
