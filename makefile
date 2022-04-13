@@ -1,14 +1,4 @@
-# Attention, this makefile will install jenkins in the cleanest possible version.
-# Read carefully before running.
-
 TARGET=runjenkins
-run:
-	docker stop -t=10 jenkins
-	docker volume rm jenkins-data
-	docker volume rm jenkins-docker-certs
-	docker rmi -f jenkins:latest
-run:
-	docker build -t jenkins:latest . --no-cache
 run:
 	docker run --name jenkins --rm --detach \
       --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
